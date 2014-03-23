@@ -9,12 +9,15 @@
 #import "ASLLog.h"
 #import <asl.h>
 
+NSString * const optASLMessageFormat    = @"ASLMessageFormat";
+NSString * const optASLTimeFormat       = @"ASLTimeFormat";
+NSString * const optASLFilterMask       = @"ASLFilterMask";
+NSString * const optASLTextEncoding     = @"ASLTextEncoding";
+
 @interface ASLLog()
 @property (nonatomic, assign) aslclient client;
 @property (nonatomic, retain) NSMutableDictionary * logFiles;
 @end
-
-
 
 static inline void asllog(ASLLog* logger, int level, NSString * format, va_list args)
 {
@@ -66,15 +69,29 @@ static ASLLog * defaultLog;
     [self.logFiles setObject:handle forKey:path];
 }
 
+- (BOOL)checkFileExist:(NSString *)path
+{
+    BOOL result = NO;
+    BOOL isDir = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && isDir == NO) {
+        result = YES;
+    }
+    return result;
+}
+
+- (BOOL)createLogFile:(NSString *)path
+{
+    return [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+}
+
 - (void)addLogFile:(NSString *)path
 {
     NSFileHandle * handle = [self.logFiles objectForKey:path];
     //check if the file is already added
     if (!handle) {
-        BOOL isDir = NO;
-        if (NO == [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] || isDir == YES) {
-            if (NO == [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil]) {
-                [self debug:@"Cannot create log file"];
+        if (NO == [self checkFileExist]) {
+            if( NO == [self createLogFile:path]) {
+                [self warning:@"Cannot create log file"];
                 return;
             }
         }
@@ -93,75 +110,27 @@ static ASLLog * defaultLog;
     }
 }
 
-- (void)logWith:(int)level format:(NSString *)format arguments:(va_list)args
-{
-    asl_log(self.client, NULL, level, "%s", [[[NSString alloc] initWithFormat:format arguments:args] UTF8String]);
+/* refer to rsms's asl-logging project
+ * https://github.com/rsms/asl-logging/blob/master/objc/ASLLogger.m
+ */
+#define LOGFUNC(NAME, LEVEL) \
+- (void)NAME:(NSString *)format, ...\
+{\
+    va_list args;\
+    va_start(args, format);\
+    asllog(self, LEVEL, format, args);\
+    va_end(args);\
 }
 
-
-- (void)emergency:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-    asllog(self, ASL_LEVEL_EMERG, format, args);
-    va_end(args);
-}
-
-- (void)alert:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-    asllog(self, ASL_LEVEL_ALERT, format, args);
-    va_end(args);
-}
-
-- (void)critical:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-    asllog(self, ASL_LEVEL_CRIT, format, args);
-    va_end(args);
-}
-
-- (void)error:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-    asllog(self, ASL_LEVEL_ERR, format, args);
-    va_end(args);
-}
-
-- (void)warning:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-    asllog(self, ASL_LEVEL_WARNING, format, args);
-    va_end(args);
-}
-
-- (void)notice:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-    asllog(self, ASL_LEVEL_NOTICE, format, args);
-    va_end(args);
-}
-
-- (void)info:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-    asllog(self, ASL_LEVEL_INFO, format, args);
-    va_end(args);
-}
-
-- (void)debug:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-    asllog(self, ASL_LEVEL_DEBUG, format, args);
-    va_end(args);
-}
+LOGFUNC(emergency, ASL_LEVEL_EMERG)
+LOGFUNC(alert, ASL_LEVEL_ALERT)
+LOGFUNC(critical, ASL_LEVEL_CRIT)
+LOGFUNC(error, ASL_LEVEL_ERR)
+LOGFUNC(warning, ASL_LEVEL_WARNING)
+LOGFUNC(notice, ASL_LEVEL_NOTICE)
+LOGFUNC(info, ASL_LEVEL_INFO)
+LOGFUNC(debug, ASL_LEVEL_DEBUG)
+#undef LOGFUNC
 
 - (void)dealloc
 {

@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const optASLMessageFormat;
+extern NSString * const optASLTimeFormat;
+extern NSString * const optASLFilterMask;
+extern NSString * const optASLTextEncoding;
+
 @interface ASLLog : NSObject
 + (ASLLog *)defaultLog;
 + (ASLLog *)logWithIdent:(NSString *)ident;
