@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-
-extern NSString * const optASLMessageFormat;
-extern NSString * const optASLTimeFormat;
-extern NSString * const optASLFilterMask;
-extern NSString * const optASLTextEncoding;
+#import <asl.h>
+#import "ASLLogOptions.h"
 
 @interface ASLLog : NSObject
+@property (nonatomic, readonly, assign) aslclient client;
 + (ASLLog *)defaultLog;
 + (ASLLog *)logWithIdent:(NSString *)ident;
 - (void)addLogFile:(NSString *)path;
 - (void)removeLogFile:(NSString *)path;
+//- (void)addLogFile:(NSString *)path withOptions:(NSDictionary*)options;
+- (void)addLogFile:(NSString *)path withOptions:(ASLLogOptions *)options;
 #pragma mark Log to specified level
 - (void)emergency:(NSString *)format, ...;  //ASL_LEVEL_EMERG   0
 - (void)alert:(NSString *)format, ...;      //ASL_LEVEL_ALERT   1

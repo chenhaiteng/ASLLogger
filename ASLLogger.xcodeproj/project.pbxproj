@@ -23,6 +23,7 @@
 		0626F87F18D84637001A2536 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0626F87D18D84637001A2536 /* InfoPlist.strings */; };
 		0626F88118D84637001A2536 /* ASLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626F88018D84637001A2536 /* ASLLoggerTests.m */; };
 		064F8A3818D9BEF600165560 /* ASLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 064F8A3718D9BEF600165560 /* ASLLog.m */; };
+		066C64A018E3FFFB003F63C5 /* ASLLogOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		0626F88018D84637001A2536 /* ASLLoggerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASLLoggerTests.m; sourceTree = "<group>"; };
 		064F8A3618D9BEF600165560 /* ASLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASLLog.h; path = ../../../../../../ChenHai/Documents/Workspace/MyProjects/ASLLogger/ASLLogger/ASLLog.h; sourceTree = "<group>"; };
 		064F8A3718D9BEF600165560 /* ASLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASLLog.m; path = ../../../../../../ChenHai/Documents/Workspace/MyProjects/ASLLogger/ASLLogger/ASLLog.m; sourceTree = "<group>"; };
+		066C649E18E3FFFB003F63C5 /* ASLLogOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASLLogOptions.h; path = ../../../../../../ChenHai/Documents/Workspace/MyProjects/ASLLogger/ASLLogger/ASLLogOptions.h; sourceTree = "<group>"; };
+		066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASLLogOptions.m; path = ../../../../../../ChenHai/Documents/Workspace/MyProjects/ASLLogger/ASLLogger/ASLLogOptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				0626F85918D84637001A2536 /* Supporting Files */,
 				064F8A3618D9BEF600165560 /* ASLLog.h */,
 				064F8A3718D9BEF600165560 /* ASLLog.m */,
+				066C649E18E3FFFB003F63C5 /* ASLLogOptions.h */,
+				066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */,
 			);
 			path = ASLLogger;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				0626F85F18D84637001A2536 /* main.m in Sources */,
 				064F8A3818D9BEF600165560 /* ASLLog.m in Sources */,
 				0626F86C18D84637001A2536 /* ALViewController.m in Sources */,
+				066C64A018E3FFFB003F63C5 /* ASLLogOptions.m in Sources */,
 				0626F86318D84637001A2536 /* ALAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

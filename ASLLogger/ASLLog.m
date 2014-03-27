@@ -7,16 +7,13 @@
 //
 
 #import "ASLLog.h"
-#import <asl.h>
-
-NSString * const optASLMessageFormat    = @"ASLMessageFormat";
-NSString * const optASLTimeFormat       = @"ASLTimeFormat";
-NSString * const optASLFilterMask       = @"ASLFilterMask";
-NSString * const optASLTextEncoding     = @"ASLTextEncoding";
+#import "ASLLogOptions.h"
 
 @interface ASLLog()
-@property (nonatomic, assign) aslclient client;
+@property (readwrite, nonatomic, assign) aslclient client;
 @property (nonatomic, retain) NSMutableDictionary * logFiles;
+- (BOOL)checkFileExist:(NSString *)path;
+- (BOOL)createLogFile:(NSString *)path;
 @end
 
 static inline void asllog(ASLLog* logger, int level, NSString * format, va_list args)
@@ -60,15 +57,6 @@ static ASLLog * defaultLog;
     return self;
 }
 
-- (void)addLogFileInternal:(NSString *)path
-{
-    NSFileHandle * handle = [NSFileHandle fileHandleForWritingAtPath:path];
-    [handle seekToEndOfFile];
-    int fd = [handle fileDescriptor];
-    asl_add_log_file(self.client, fd);
-    [self.logFiles setObject:handle forKey:path];
-}
-
 - (BOOL)checkFileExist:(NSString *)path
 {
     BOOL result = NO;
@@ -84,19 +72,53 @@ static ASLLog * defaultLog;
     return [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
 }
 
+- (void)addLogFileInternal:(NSString *)path
+{
+    NSFileHandle * handle = [NSFileHandle fileHandleForWritingAtPath:path];
+    [handle seekToEndOfFile];
+    int fd = [handle fileDescriptor];
+    asl_add_log_file(self.client, fd);
+    [self.logFiles setObject:handle forKey:path];
+}
+
 - (void)addLogFile:(NSString *)path
 {
     NSFileHandle * handle = [self.logFiles objectForKey:path];
     //check if the file is already added
     if (!handle) {
-        if (NO == [self checkFileExist]) {
+        if (NO == [self checkFileExist:path]) {
             if( NO == [self createLogFile:path]) {
-                [self warning:@"Cannot create log file"];
+                [self warning:@"Cannot create log file."];
                 return;
             }
         }
         [self addLogFileInternal:path];
     }
+}
+
+- (void)addLogFileInternal:(NSString *)path withOptions:(ASLLogOptions *)options
+{
+    NSFileHandle * handle = [NSFileHandle fileHandleForWritingAtPath:path];
+    [handle seekToEndOfFile];
+    int fd = [handle fileDescriptor];
+    asl_add_output_file(self.client, fd, [options.messageFormat UTF8String], [options.timeFormat UTF8String], options.filters, options.textEncoding);
+    [self.logFiles setObject:handle forKey:path];
+}
+
+- (void)addLogFile:(NSString *)path withOptions:(ASLLogOptions *)options;
+{
+    
+    NSFileHandle * handle = [self.logFiles objectForKey:path];
+    //check if the file is already added
+    if (!handle) {
+        if (NO == [self checkFileExist:path]) {
+            if (NO == [self createLogFile:path]) {
+                [self warning:@"Cannot create log file."];
+                return;
+            }
+        }
+    }
+    [self addLogFileInternal:path withOptions:options];
 }
 
 - (void)removeLogFile:(NSString *)path
