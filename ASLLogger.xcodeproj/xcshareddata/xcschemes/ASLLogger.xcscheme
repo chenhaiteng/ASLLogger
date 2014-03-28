@@ -32,7 +32,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#exec &gt; /tmp/my_log_file.txt 2&gt;&amp;1!&#13;OBJDIR=${PROJECT_TEMP_DIR}/${CONFIGURATION}-iphonesimulator/$ {TARGET_NAME}.build/Objects-normal/i386/!&#13;cd ${OBJDIR}!&#13;/!usr/local/bin/gcovr --xml --output=${OBJDIR}${PROJECT_NAME}.xml!&#13;if [ ! -z &#x201c;$WORKSPACE&#x201d; ]!&#13;then!&#13;cp ${OBJDIR}${PROJECT_NAME}.xml ${WORKSPACE}/${PROJECT_NAME}.xml!&#10;fi">
+               scriptText = "#exec &gt; /tmp/my_log_file.txt 2&gt;&amp;1&#10;OBJDIR=${PROJECT_TEMP_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.build/Objects-normal/i386/&#10;cd ${OBJDIR}&#10;&#10;/usr/local/bin/gcovr --xml --output=${OBJDIR}${PROJECT_NAME}.xml&#10;if [ ! -z &quot;$WORKSPACE&quot; ]&#10;then&#10;echo &quot;workspace: ${WORKSPACE}&quot;&#10;cp ${OBJDIR}${PROJECT_NAME}.xml ${WORKSPACE}/${PROJECT_NAME}.xml&#10;fi">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
