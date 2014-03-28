@@ -39,6 +39,12 @@ NSString * const TestMessageFormat = @"Test Format $(Time)";
     }
 }
 
++ (void)tearDown
+{
+    extern void __gcov_flush(void);
+    __gcov_flush();
+}
+
 - (void)setUp
 {
     [super setUp];
