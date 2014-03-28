@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0626B20E18E564D500B28499 /* ASLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 064F8A3718D9BEF600165560 /* ASLLog.m */; };
-		0626B20F18E564D500B28499 /* ASLLogOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */; };
 		0626F85318D84637001A2536 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0626F85218D84637001A2536 /* Foundation.framework */; };
 		0626F85518D84637001A2536 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0626F85418D84637001A2536 /* CoreGraphics.framework */; };
 		0626F85718D84637001A2536 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0626F85618D84637001A2536 /* UIKit.framework */; };
@@ -24,8 +22,10 @@
 		0626F87718D84637001A2536 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0626F85618D84637001A2536 /* UIKit.framework */; };
 		0626F87F18D84637001A2536 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0626F87D18D84637001A2536 /* InfoPlist.strings */; };
 		0626F88118D84637001A2536 /* ASLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626F88018D84637001A2536 /* ASLLoggerTests.m */; };
-		064F8A3818D9BEF600165560 /* ASLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 064F8A3718D9BEF600165560 /* ASLLog.m */; };
-		066C64A018E3FFFB003F63C5 /* ASLLogOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */; };
+		062E7DE318E5674F00B5095E /* ASLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 062E7DE018E5674F00B5095E /* ASLLog.m */; };
+		062E7DE418E5674F00B5095E /* ASLLogOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 062E7DE218E5674F00B5095E /* ASLLogOptions.m */; };
+		062E7DE518E5676700B5095E /* ASLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 062E7DE018E5674F00B5095E /* ASLLog.m */; };
+		062E7DE618E5676B00B5095E /* ASLLogOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 062E7DE218E5674F00B5095E /* ASLLogOptions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +59,10 @@
 		0626F87C18D84637001A2536 /* ASLLoggerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ASLLoggerTests-Info.plist"; sourceTree = "<group>"; };
 		0626F87E18D84637001A2536 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0626F88018D84637001A2536 /* ASLLoggerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASLLoggerTests.m; sourceTree = "<group>"; };
-		064F8A3618D9BEF600165560 /* ASLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASLLog.h; path = ../../../../../../ChenHai/Documents/Workspace/MyProjects/ASLLogger/ASLLogger/ASLLog.h; sourceTree = "<group>"; };
-		064F8A3718D9BEF600165560 /* ASLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASLLog.m; path = ../../../../../../ChenHai/Documents/Workspace/MyProjects/ASLLogger/ASLLogger/ASLLog.m; sourceTree = "<group>"; };
-		066C649E18E3FFFB003F63C5 /* ASLLogOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASLLogOptions.h; path = ../../../../../../ChenHai/Documents/Workspace/MyProjects/ASLLogger/ASLLogger/ASLLogOptions.h; sourceTree = "<group>"; };
-		066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASLLogOptions.m; path = ../../../../../../ChenHai/Documents/Workspace/MyProjects/ASLLogger/ASLLogger/ASLLogOptions.m; sourceTree = "<group>"; };
+		062E7DDF18E5674F00B5095E /* ASLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASLLog.h; path = ASLLog.h; sourceTree = "<group>"; };
+		062E7DE018E5674F00B5095E /* ASLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASLLog.m; path = ASLLog.m; sourceTree = "<group>"; };
+		062E7DE118E5674F00B5095E /* ASLLogOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASLLogOptions.h; path = ASLLogOptions.h; sourceTree = "<group>"; };
+		062E7DE218E5674F00B5095E /* ASLLogOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASLLogOptions.m; path = ASLLogOptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +122,10 @@
 		0626F85818D84637001A2536 /* ASLLogger */ = {
 			isa = PBXGroup;
 			children = (
+				062E7DDF18E5674F00B5095E /* ASLLog.h */,
+				062E7DE018E5674F00B5095E /* ASLLog.m */,
+				062E7DE118E5674F00B5095E /* ASLLogOptions.h */,
+				062E7DE218E5674F00B5095E /* ASLLogOptions.m */,
 				0626F86118D84637001A2536 /* ALAppDelegate.h */,
 				0626F86218D84637001A2536 /* ALAppDelegate.m */,
 				0626F86418D84637001A2536 /* Main_iPhone.storyboard */,
@@ -130,10 +134,6 @@
 				0626F86B18D84637001A2536 /* ALViewController.m */,
 				0626F86D18D84637001A2536 /* Images.xcassets */,
 				0626F85918D84637001A2536 /* Supporting Files */,
-				064F8A3618D9BEF600165560 /* ASLLog.h */,
-				064F8A3718D9BEF600165560 /* ASLLog.m */,
-				066C649E18E3FFFB003F63C5 /* ASLLogOptions.h */,
-				066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */,
 			);
 			path = ASLLogger;
 			sourceTree = "<group>";
@@ -267,9 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0626F85F18D84637001A2536 /* main.m in Sources */,
-				064F8A3818D9BEF600165560 /* ASLLog.m in Sources */,
+				062E7DE318E5674F00B5095E /* ASLLog.m in Sources */,
 				0626F86C18D84637001A2536 /* ALViewController.m in Sources */,
-				066C64A018E3FFFB003F63C5 /* ASLLogOptions.m in Sources */,
+				062E7DE418E5674F00B5095E /* ASLLogOptions.m in Sources */,
 				0626F86318D84637001A2536 /* ALAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,8 +279,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0626F88118D84637001A2536 /* ASLLoggerTests.m in Sources */,
-				0626B20F18E564D500B28499 /* ASLLogOptions.m in Sources */,
-				0626B20E18E564D500B28499 /* ASLLog.m in Sources */,
+				062E7DE618E5676B00B5095E /* ASLLogOptions.m in Sources */,
+				062E7DE518E5676700B5095E /* ASLLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
