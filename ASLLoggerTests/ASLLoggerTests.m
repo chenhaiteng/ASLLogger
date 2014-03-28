@@ -152,6 +152,13 @@ NSString * const TestMessageFormat = @"Test Format $(Time)";
     
     XCTAssertThrows([ASLLogOptions optionsFromDictionary:[self createInvalidTimeFormatDictionary]], @"Should throws exceptions for invalid time format argument.");
     
+    ASLLogOptions * optionsFromDict = [ASLLogOptions optionsFromDictionary:[self createValidDictionary]];
+    
+    XCTAssertEqualObjects(optionsFromDict.messageFormat, [NSString stringWithUTF8String:ASL_MSG_FMT_STD], @"Unexpected time format:%@",optionsFromDict.messageFormat);
+    XCTAssertEqualObjects(optionsFromDict.timeFormat, [NSString stringWithUTF8String:ASL_TIME_FMT_SEC], @"Unexpected time format:%@",optionsFromDict.timeFormat);
+    XCTAssertEqual(optionsFromDict.filters, ASL_FILTER_MASK_UPTO(ASL_LEVEL_ERR), @"Unexpected filters: %x", optionsFromDict.filters);
+    XCTAssertEqual(optionsFromDict.textEncoding, ASL_ENCODE_ASL, @"Unexpected filters: %d", optionsFromDict.textEncoding);
+    
     ASLLogOptions * options = [ASLLogOptions optionsWithMessageFormat:TestMessageFormat];
     XCTAssertNotNil(options, @"No options create with format: %@", TestMessageFormat);
     XCTAssertEqualObjects(options.timeFormat, [NSString stringWithUTF8String:ASL_TIME_FMT_LCL], @"Unexpected time format:%@",options.timeFormat);
