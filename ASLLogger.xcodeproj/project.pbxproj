@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0626B20E18E564D500B28499 /* ASLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 064F8A3718D9BEF600165560 /* ASLLog.m */; };
+		0626B20F18E564D500B28499 /* ASLLogOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */; };
 		0626F85318D84637001A2536 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0626F85218D84637001A2536 /* Foundation.framework */; };
 		0626F85518D84637001A2536 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0626F85418D84637001A2536 /* CoreGraphics.framework */; };
 		0626F85718D84637001A2536 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0626F85618D84637001A2536 /* UIKit.framework */; };
@@ -24,8 +26,6 @@
 		0626F88118D84637001A2536 /* ASLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626F88018D84637001A2536 /* ASLLoggerTests.m */; };
 		064F8A3818D9BEF600165560 /* ASLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 064F8A3718D9BEF600165560 /* ASLLog.m */; };
 		066C64A018E3FFFB003F63C5 /* ASLLogOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */; };
-		06F7731D18E55DB800E99650 /* ASLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 064F8A3718D9BEF600165560 /* ASLLog.m */; };
-		06F7731E18E55DB800E99650 /* ASLLogOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 066C649F18E3FFFB003F63C5 /* ASLLogOptions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,8 +279,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0626F88118D84637001A2536 /* ASLLoggerTests.m in Sources */,
-				06F7731E18E55DB800E99650 /* ASLLogOptions.m in Sources */,
-				06F7731D18E55DB800E99650 /* ASLLog.m in Sources */,
+				0626B20F18E564D500B28499 /* ASLLogOptions.m in Sources */,
+				0626B20E18E564D500B28499 /* ASLLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
