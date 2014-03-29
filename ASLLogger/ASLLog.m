@@ -10,15 +10,10 @@
 #import "ASLLogOptions.h"
 
 @interface ASLLog()
-@property (nonatomic, retain) NSMutableDictionary * logFiles;
+@property (nonatomic, strong) NSMutableDictionary * logFiles;
 - (BOOL)checkFileExist:(NSString *)path;
 - (BOOL)createLogFile:(NSString *)path;
 @end
-
-static inline void asllog(ASLLog* logger, int level, NSString * format, va_list args)
-{
-    asl_log(logger.client, NULL, level, "%s", [[[NSString alloc] initWithFormat:format arguments:args] UTF8String]);
-}
 
 @implementation ASLLog
 
@@ -139,7 +134,7 @@ static ASLLog * defaultLog;
 {\
     va_list args;\
     va_start(args, format);\
-    asllog(self, LEVEL, format, args);\
+    asl_log(self.client, NULL, LEVEL, "%s", [[[NSString alloc] initWithFormat:format arguments:args] UTF8String]);\
     va_end(args);\
 }
 
