@@ -73,6 +73,10 @@ NSString * const TestMessageFormat = @"Test Format $(Time)";
 {
 #pragma mark Test default logger.
     ASLLog * defaultLog = [ASLLog defaultLog];
+    ASLLog * defaultLog2 = [ASLLog logWithIdent:nil];
+    ASLLog * defaultLog3 = [ASLLog logWithIdent:@""];
+    XCTAssertEqualObjects(defaultLog, defaultLog2, @"[ASLLog logWithIdent:nil] should return defaultLog");
+    XCTAssertEqualObjects(defaultLog, defaultLog3, @"[ASLLog logWithIdent:@""] should return defaultLog");
     NSString * logPath = [NSTemporaryDirectory() stringByAppendingPathComponent:TestLogFile];
     NSLog(@"log path: %@",logPath);
     [defaultLog addLogFile:logPath];
