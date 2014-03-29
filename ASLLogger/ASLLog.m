@@ -10,7 +10,6 @@
 #import "ASLLogOptions.h"
 
 @interface ASLLog()
-@property (readwrite, nonatomic, assign) aslclient client;
 @property (nonatomic, retain) NSMutableDictionary * logFiles;
 - (BOOL)checkFileExist:(NSString *)path;
 - (BOOL)createLogFile:(NSString *)path;
