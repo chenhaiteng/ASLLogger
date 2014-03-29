@@ -71,8 +71,10 @@ NSString * const TestMessageFormat = @"Test Format $(Time)";
 
 - (void)testLogToFile
 {
+#pragma mark Test default logger.
     ASLLog * defaultLog = [ASLLog defaultLog];
     NSString * logPath = [NSTemporaryDirectory() stringByAppendingPathComponent:TestLogFile];
+    NSLog(@"log path: %@",logPath);
     [defaultLog addLogFile:logPath];
     [defaultLog emergency:TestLogOutput];
     [defaultLog emergency:TestLogFormat, @"ASLLog"];
@@ -108,6 +110,23 @@ NSString * const TestMessageFormat = @"Test Format $(Time)";
     [self checkLog:logs[13] forLevel:@"Info"];
     [self checkLog:logs[14] forLevel:@"Debug"];
     [self checkLog:logs[15] forLevel:@"Debug"];
+#pragma mark Test logging to the same file.
+    ASLLog * logger = [ASLLog logWithIdent:@"Independent"];
+    [logger addLogFile:logPath];
+    [logger debug:TestLogFormat, @"ASLLog"];
+    NSString *Indlogdata = [NSString stringWithContentsOfFile:logPath encoding:NSUTF8StringEncoding error:NULL];
+    NSArray * IndLogs = [Indlogdata componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSString * IndLog = IndLogs[[IndLogs count] - 2];
+    NSRange IndRange = [IndLog rangeOfString:@"Independent"];
+    XCTAssertNotEqual(IndRange.location, NSNotFound, @"Independent log lost.");
+#pragma mark Test remove log file from logger.
+    [defaultLog removeLogFile:logPath];
+    [defaultLog debug:@"Remove from log file"];
+    logdata = [NSString stringWithContentsOfFile:logPath encoding:NSUTF8StringEncoding error:NULL];
+    logs = [logdata componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSString * finalLog = logs[logs.count - 2];
+    NSRange finalRange = [finalLog rangeOfString:@"Remove from log file"];
+    XCTAssertEqual(finalRange.location, NSNotFound, @"The final log should not be written to log file.");
 }
 
 
